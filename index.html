@@ -1,0 +1,2897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Brevion Labs – Ambition. Skills. Impact.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-main: #050716;
+            --bg-elevated: #0b0f26;
+            --bg-elevated-soft: #10152f;
+            --primary: #1c2143;
+            --accent: #3ec8ff;
+            --accent-soft: rgba(62, 200, 255, 0.18);
+            --accent-gradient: linear-gradient(135deg, #3ec8ff, #6a7bff);
+            --accent-gradient-strong: linear-gradient(135deg, #26c1ff, #6a3eff);
+            --text-main: #f7f7fb;
+            --text-muted: #a6adc8;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --danger: #ff6b81;
+            --success: #27d980;
+            --nav-height: 72px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.55);
+            --transition-fast: 0.22s ease;
+            --transition-med: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #13194b 0, #050716 40%, #02030a 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* Re-usable layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section {
+            padding: 90px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(9, 13, 37, 0.9);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .section-label-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent-gradient);
+        }
+
+        .section-title {
+            font-size: 2.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            max-width: 520px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            width: 100%;
+            transition: background var(--transition-med), box-shadow var(--transition-med), backdrop-filter var(--transition-med), border-color var(--transition-med);
+        }
+
+        .nav-inner {
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #fff, #3ec8ff 40%, #13194b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #050816;
+        }
+
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .nav-logo-text span:first-child {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .nav-logo-text span:last-child {
+            font-size: 0.73rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--accent-gradient);
+            transition: width var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            background: rgba(10, 16, 56, 0.85);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            background: rgba(18, 26, 78, 0.9);
+            box-shadow: 0 14px 42px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(9, 13, 37, 0.95);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            content: "";
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: #ffffff;
+            position: relative;
+            transition: transform var(--transition-fast), opacity var(--transition-fast), top var(--transition-fast), bottom var(--transition-fast);
+        }
+
+        .nav-toggle span::before {
+            position: absolute;
+            top: -5px;
+        }
+
+        .nav-toggle span::after {
+            position: absolute;
+            bottom: -5px;
+        }
+
+        .nav-toggle.active span {
+            transform: rotate(45deg);
+        }
+
+        .nav-toggle.active span::before {
+            top: 0;
+            transform: rotate(90deg);
+        }
+
+        .nav-toggle.active span::after {
+            bottom: 0;
+            opacity: 0;
+        }
+
+        header.nav-scrolled {
+            background: rgba(3, 5, 18, 0.96);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.75);
+        }
+
+        main {
+            padding-top: var(--nav-height);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -120px;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(62, 200, 255, 0.28), transparent 55%),
+                radial-gradient(circle at 100% 0%, rgba(106, 123, 255, 0.2), transparent 55%),
+                radial-gradient(circle at 50% 120%, rgba(62, 200, 255, 0.25), transparent 55%);
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(5, 11, 40, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-badge-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--success);
+            box-shadow: 0 0 0 4px rgba(39, 217, 128, 0.18);
+        }
+
+        .hero-kicker {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.4rem, 3.2vw + 1rem, 3.4rem);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            line-height: 1.1;
+            margin-bottom: 14px;
+        }
+
+        .hero-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(4, 9, 31, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .hero-tagline span {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .hero-text {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 520px;
+            margin-bottom: 26px;
+        }
+
+        .hero-highlight {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 0.86rem;
+            color: var(--accent);
+            margin-bottom: 26px;
+        }
+
+        .hero-highlight-pill {
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px dashed rgba(62, 200, 255, 0.56);
+            background: rgba(11, 16, 59, 0.8);
+            font-size: 0.86rem;
+            color: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient-strong);
+            color: #050816;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
+            opacity: 0.96;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(16px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(9, 13, 40, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .hero-note-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-orbit {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin-left: auto;
+            aspect-ratio: 4 / 5;
+            border-radius: 32px;
+            background:
+                radial-gradient(circle at 10% 0, rgba(62, 200, 255, 0.28), transparent 60%),
+                radial-gradient(circle at 90% 100%, rgba(106, 123, 255, 0.35), transparent 60%),
+                linear-gradient(145deg, rgba(11, 16, 48, 0.95), rgba(2, 5, 24, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-soft);
+            padding: 18px 18px 24px;
+            overflow: hidden;
+        }
+
+        .hero-orbit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .hero-orbit-tag {
+            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(2, 5, 22, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+        }
+
+        .hero-orbit-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(8, 18, 61, 0.95);
+            border: 1px solid rgba(62, 200, 255, 0.6);
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .hero-orbit-pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent-gradient);
+        }
+
+        .hero-orbit-grid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 16px;
+            padding: 12px;
+            background: rgba(5, 9, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+            cursor: default;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background: radial-gradient(circle at 10% 0, rgba(62, 200, 255, 0.22), transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px) translateZ(0);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9);
+            border-color: rgba(62, 200, 255, 0.6);
+            background: rgba(7, 13, 40, 0.98);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .project-title {
+            font-size: 0.86rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .project-meta {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(8, 21, 62, 0.95);
+            font-size: 0.68rem;
+            color: var(--accent);
+        }
+
+        .hero-orbit-footer {
+            margin-top: 18px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-stat {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .hero-ribbon {
+            position: absolute;
+            right: -40px;
+            top: 40%;
+            transform: rotate(40deg);
+            padding: 4px 80px;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            background: rgba(3, 7, 32, 0.92);
+            border-top: 1px solid rgba(255, 255, 255, 0.09);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+            color: var(--accent);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            opacity: 0.9;
+        }
+
+        .scroll-indicator-arrow {
+            width: 16px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 4px;
+            animation: bounce 1.4s infinite;
+        }
+
+        .scroll-indicator-arrow span {
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            transform: rotate(-45deg);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(5px);
+            }
+        }
+
+        /* WHY BREVI0N */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .why-card {
+            background: rgba(7, 12, 38, 0.96);
+            border-radius: var(--radius-lg);
+            padding: 18px 18px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 14px 42px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .why-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at 10% 0, rgba(62, 200, 255, 0.2), transparent 60%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-fast);
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 54px rgba(0, 0, 0, 0.9);
+            border-color: rgba(62, 200, 255, 0.6);
+            background: rgba(9, 15, 46, 0.98);
+        }
+
+        .why-card:hover::before {
+            opacity: 1;
+        }
+
+        .why-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .why-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .why-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* TRACKS */
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .track-card {
+            background: rgba(6, 12, 40, 0.96);
+            border-radius: var(--radius-xl);
+            padding: 18px 18px 22px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at 10% 0, rgba(62, 200, 255, 0.2), transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .track-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(62, 200, 255, 0.7);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.95);
+            background: rgba(8, 18, 64, 0.98);
+        }
+
+        .track-card:hover::before {
+            opacity: 1;
+        }
+
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .track-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .track-tag {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(2, 5, 24, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            white-space: nowrap;
+        }
+
+        .track-projects {
+            list-style: none;
+            margin: 8px 0 10px;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .track-projects li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        .track-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .track-level {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .track-pill {
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(3, 8, 32, 0.92);
+            color: var(--accent);
+        }
+
+        .track-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(62, 200, 255, 0.5);
+            background: rgba(4, 11, 42, 0.95);
+            color: var(--accent);
+            cursor: pointer;
+            transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .track-card:hover .track-cta {
+            background: rgba(7, 17, 62, 0.98);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.8);
+        }
+
+        /* HOW IT WORKS */
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+            position: relative;
+        }
+
+        .how-steps::before {
+            content: "";
+            position: absolute;
+            top: 34px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(to right, rgba(62, 200, 255, 0.1), rgba(62, 200, 255, 0.7), rgba(62, 200, 255, 0.1));
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .how-card {
+            background: rgba(8, 13, 40, 0.96);
+            border-radius: var(--radius-lg);
+            padding: 18px 16px 22px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+        }
+
+        .step-index {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .how-title {
+            font-size: 0.98rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .how-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .how-footnote {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .how-footnote strong {
+            color: var(--accent);
+        }
+
+        /* PROJECT SHOWCASE */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .showcase-card {
+            background: rgba(7, 13, 40, 0.97);
+            border-radius: var(--radius-xl);
+            padding: 16px 16px 18px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .showcase-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at 0 0, rgba(62, 200, 255, 0.18), transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(62, 200, 255, 0.65);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
+            background: rgba(9, 17, 54, 0.99);
+        }
+
+        .showcase-card:hover::before {
+            opacity: 1;
+        }
+
+        .showcase-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .showcase-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .showcase-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(2, 7, 28, 0.94);
+            color: var(--accent);
+        }
+
+        .showcase-btn {
+            font-size: 0.78rem;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(62, 200, 255, 0.8);
+            background: rgba(4, 10, 38, 0.98);
+            color: var(--accent);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .showcase-card:hover .showcase-btn {
+            background: rgba(9, 18, 60, 0.98);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(7, 12, 38, 0.97);
+            border-radius: var(--radius-xl);
+            padding: 18px 18px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-quote {
+            font-size: 1.6rem;
+            color: rgba(62, 200, 255, 0.9);
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
+        }
+
+        .testimonial-grade {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-highlight {
+            font-size: 0.78rem;
+            color: var(--accent);
+        }
+
+        .testimonial-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.testimonial-link:hover {
+    opacity: 0.7;
+}
+.testimonial-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.testimonial-link:hover {
+    opacity: 0.7;
+}
+
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .pricing-card {
+            position: relative;
+            background: rgba(7, 13, 40, 0.96);
+            border-radius: 24px;
+            padding: 22px 18px 22px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pricing-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(62, 200, 255, 0.7);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.95);
+    background: rgba(8, 18, 64, 0.98);
+}
+
+
+
+        .pricing-card.popular {
+    border-color: rgba(62, 200, 255, 0.9);
+    background:
+        radial-gradient(circle at 0 0, rgba(62, 200, 255, 0.24), transparent 55%),
+        rgba(7, 13, 40, 0.98);
+}
+
+
+        .pricing-pill {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(4, 10, 36, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-muted);
+            align-self: flex-start;
+        }
+
+        .pricing-card.popular .pricing-pill {
+            background: rgba(2, 6, 24, 0.96);
+            border-color: rgba(62, 200, 255, 0.9);
+            color: var(--accent);
+        }
+
+        .pricing-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .pricing-price {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .pricing-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .pricing-dot {
+            margin-top: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+        }
+
+        .pricing-btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .pricing-badge {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(3, 7, 26, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--accent);
+}
+
+/* LOGO SLIDER */
+.logo-slider {
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+}
+
+.logo-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: calc(250px * 16);
+    animation: scrollLogos 26s linear infinite;
+}
+
+.logo-track img {
+    height: 70px;
+    filter: brightness(0.95);
+    opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-track img:hover {
+    transform: scale(1.12);
+    opacity: 1;
+}
+
+@keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ⭐ SKILL ICONS UNDER TRACKS */
+.track-icons {
+    display: flex;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.track-icons img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: brightness(0.98);
+    transition: transform 0.25s ease;
+}
+
+.track-icons img:hover {
+    transform: scale(1.15);
+}
+
+/* CONTACT */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 32px;
+    align-items: center;
+}
+
+        .contact-intro {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .contact-highlight {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .contact-list {
+            list-style: none;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .contact-list li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 6px;
+            font-size: 0.78rem;
+        }
+
+        .form-card {
+            background: rgba(7, 12, 40, 0.98);
+            border-radius: 20px;
+            padding: 18px 18px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.82rem;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+
+        .required {
+            color: var(--accent);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(3, 7, 22, 0.96);
+            color: var(--text-main);
+            font-size: 0.86rem;
+            outline: none;
+            transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(62, 200, 255, 0.9);
+            box-shadow: 0 0 0 1px rgba(62, 200, 255, 0.4);
+            background: rgba(5, 10, 28, 0.96);
+        }
+
+        .error-msg {
+            font-size: 0.75rem;
+            color: var(--danger);
+            margin-top: 3px;
+            min-height: 14px;
+        }
+
+        .form-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        
+        /* SCROLL TO TOP */
+        .scroll-top {
+            position: fixed;
+            right: 16px;
+            bottom: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(3, 7, 28, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-med), transform var(--transition-med), bottom var(--transition-med);
+            z-index: 40;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .scroll-top span {
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid rgba(255, 255, 255, 0.9);
+            border-top: 2px solid rgba(255, 255, 255, 0.9);
+            transform: rotate(45deg);
+            margin-bottom: -2px;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-2px);
+        }
+
+        /* REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* MODAL (optional for project details) */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal {
+            width: min(480px, 94%);
+            background: rgba(6, 10, 36, 0.98);
+            border-radius: 18px;
+            padding: 18px 18px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 65px rgba(0, 0, 0, 0.95);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .modal-body {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .modal-body strong {
+            color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1.1fr);
+                gap: 40px;
+            }
+
+            .hero-orbit {
+                margin: 0 auto;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .tracks-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .how-steps {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .how-steps::before {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .contact-wrapper {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                inset-inline: 0;
+                top: var(--nav-height);
+                background: rgba(4, 8, 28, 0.98);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 10px 5% 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                transform: translateY(-20px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity var(--transition-med), transform var(--transition-med);
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-cta {
+                margin-top: 4px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 12px;
+            }
+
+            .hero-title {
+                font-size: 2.24rem;
+            }
+
+            .why-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .tracks-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .how-steps {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 72px 0;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .scroll-top {
+                right: 12px;
+                bottom: 14px;
+            }
+        }
+
+        /* FAQ SECTION */
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background: rgba(7, 12, 38, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.faq-item.active {
+    border-color: rgba(62, 200, 255, 0.7);
+    background: rgba(10, 18, 55, 0.98);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.faq-question span {
+    font-size: 1.2rem;
+    color: var(--accent);
+    transition: transform 0.25s ease;
+}
+
+.faq-item.active .faq-question span {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+.footer {
+    background: rgba(2, 5, 18, 0.96);
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 60px;
+}
+
+.footer-container {
+    width: 88%;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.footer-brand h2 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.footer-brand p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 18px 0;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.footer-social {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-social span {
+    font-size: 0.85rem;
+    margin-right: 6px;
+}
+
+.footer-icon img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.85;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.footer-icon img:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+   </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header id="navbar">
+        <div class="container nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo-circle">BL</div>
+                <div class="nav-logo-text">
+                    <span>Brevion Labs</span>
+                    <span>Ambition. Skills. Impact.</span>
+                </div>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#tracks">Tracks</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+                <button class="nav-cta" type="button"
+                    onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                    Talk to an Advisor
+                </button>
+            </nav>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero section" id="home">
+            <div class="container hero-grid">
+                <div class="hero-left reveal">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        <span>For ambitious high school and University students aiming higher</span>
+                    </div>
+                    <div class="hero-kicker">Brevion Labs · Student Project Studio</div>
+                    <h1 class="hero-title">
+                        Build Projects.<br />
+                        Build Your Future.
+                    </h1>
+                    <div class="hero-tagline">
+                        <span>Ambition.</span> Skills. Impact.
+                    </div>
+                    <p class="hero-text">
+                        Brevion Labs helps ambitious students build real AI, Machine Learning, Data Science, and Web
+                        Development projects that power their portfolio and undergraduate/postgraduate university applications.
+                    </p>
+                    <div class="hero-highlight">
+                        <span class="hero-highlight-pill">Project-first learning</span>
+                        <span>→ From blank page to GitHub-ready portfolio.</span>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" type="button"
+                            onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                            Start Your First Project
+                        </button>
+                        <button class="btn btn-secondary" type="button"
+                            onclick="document.querySelector('#tracks').scrollIntoView({behavior:'smooth'})">
+                            View Project Tracks
+                        </button>
+                    </div>
+                    <div class="hero-note">
+                        <span class="hero-note-dot"></span>
+                        <span>Guided by mentor-style support no prior coding experience required.</span>
+                    </div>
+                </div>
+
+                <div class="hero-right reveal reveal-delay-2">
+                    <div class="hero-orbit">
+                        <div class="hero-orbit-header">
+                            <div class="hero-orbit-tag">Sample Portfolio Snapshot</div>
+                            <div class="hero-orbit-pill">
+                                <span class="hero-orbit-pill-dot"></span>
+                                <span>Top 5% applicants</span>
+                            </div>
+                        </div>
+                        <div class="hero-orbit-grid">
+                            <div class="project-card">
+                                <div class="project-label">AI & ML</div>
+                                <div class="project-title">Real time Filteration</div>
+                                <div class="project-meta">Python · Scikit-learn · Proxy</div>
+                                <div class="project-badge">Intermediate Track</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-label">Data Science</div>
+                                <div class="project-title">Global Climate Insights Dashboard</div>
+                                <div class="project-meta">Pandas · Plotly · Jupyter</div>
+                                <div class="project-badge">Admissions-ready</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-label">Web Dev</div>
+                                <div class="project-title">Personal Portfolio Website</div>
+                                <div class="project-meta">HTML · CSS · JavaScript</div>
+                                <div class="project-badge">Beginner Friendly</div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-label">Portfolio Lab</div>
+                                <div class="project-title">GitHub & CV Storyline</div>
+                                <div class="project-meta">Profile curation · Write-ups</div>
+                                <div class="project-badge">Impact-focused</div>
+                            </div>
+                        </div>
+                        <div class="hero-orbit-footer">
+                            <div class="hero-stat">
+                                <strong>3–5 projects</strong>
+                                per student portfolio
+                            </div>
+                            <div class="hero-stat">
+                                <strong>100% GitHub</strong>
+                                & admission-ready docs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator">
+                    <div class="scroll-indicator-arrow">
+                        <span></span>
+                    </div>
+                    <span>Scroll to explore</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY BREVI0N LABS -->
+        <section class="section" id="why">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Why Brevion Labs?</span>
+                    </div>
+                    <h2 class="section-title">Built for serious students, not casual tutorials.</h2>
+                    <p class="section-subtitle">
+                        Every track at Brevion Labs is designed backwards from what top universities look for: proof of
+                        skills, evidence of initiative, and a portfolio that actually tells a story.
+                    </p>
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card reveal reveal-delay-1">
+                        <div class="why-icon">🧠</div>
+                        <h3 class="why-title">Real Projects, Not Just Theory</h3>
+                        <p class="why-text">
+                            Work on full, end-to-end projects in AI, ML, Data Science, and Web Dev not tiny toy
+                            problems or copy-paste tutorials.
+                        </p>
+                    </div>
+                    <div class="why-card reveal reveal-delay-2">
+                        <div class="why-icon">🎓</div>
+                        <h3 class="why-title">Built for Admissions Impact</h3>
+                        <p class="why-text">
+                            Projects selected and framed to strengthen undergraduate/Postgraduate applications for CS, Data, and
+                            related majors worldwide.
+                        </p>
+                    </div>
+                    <div class="why-card reveal reveal-delay-3">
+                        <div class="why-icon">🤝</div>
+                        <h3 class="why-title">Step-by-Step Mentorship</h3>
+                        <p class="why-text">
+                            Guided breakdowns, milestones, proof of work, and feedback so students never feel lost but still own the
+                            final project.
+                        </p>
+                    </div>
+                    <div class="why-card reveal reveal-delay-3">
+                        <div class="why-icon">📁</div>
+                        <h3 class="why-title">Portfolio, GitHub & CV Support</h3>
+                        <p class="why-text">
+                            Turn raw work into polished, admissions-ready proof of skill: GitHub repos, write-ups, and
+                            CV bullet points.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACKS -->
+    <section class="section" id="tracks">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    <span>Tracks</span>
+                </div>
+                <h2 class="section-title">Project Tracks</h2>
+                <p class="section-subtitle">
+                    Choose a track aligned with your interests and target programs. Each includes curated/Personalised project
+                    ideas, templates, and support.
+                </p>
+            </div>
+    
+            <div class="tracks-grid">
+    
+                <!-- AI & MACHINE LEARNING -->
+                <article class="track-card reveal reveal-delay-1">
+                    <div class="track-header">
+                        <div class="track-name">AI & Machine Learning</div>
+                        <div class="track-tag">Core Technical</div>
+                    </div>
+    
+                    <ul class="track-projects">
+                        <li>AI based Content Filteration</li>
+                        <li>Real time Disaster Alert System</li>
+                        <li>AI Study Companion Chatbot</li>
+                    </ul>
+    
+                    <div class="track-meta">
+                        <div class="track-level">Levels: Beginner → Intermediate</div>
+                    </div>
+    
+                    <!-- ICONS -->
+                    <div class="track-icons">
+                        <img src="assets/logos/python-logo.png" alt="Python">
+                        <img src="assets/logos/TensorFlow_logo.png" alt="TensorFlow">
+                        <img src="assets/logos/NumPy_logo.png" alt="NumPy">
+                    </div>
+                </article>
+    
+                <!-- DATA SCIENCE -->
+                <article class="track-card reveal reveal-delay-2">
+                    <div class="track-header">
+                        <div class="track-name">Data Science</div>
+                        <div class="track-tag">Insight Driven</div>
+                    </div>
+    
+                    <ul class="track-projects">
+                        <li>College Admissions Data Explorer</li>
+                        <li>Global Climate Trends Dashboard</li>
+                        <li>Sports Analytics Mini-Lab</li>
+                    </ul>
+    
+                    <div class="track-meta">
+                        <div class="track-level">Levels: Beginner → Intermediate</div>
+                    </div>
+    
+                    <!-- ICONS -->
+                    <div class="track-icons">
+                        <img src="assets/logos/python-logo.png" alt="Python">
+                        <img src="assets/logos/NumPy_logo.png" alt="NumPy">
+                        <img src="assets/logos/TensorFlow_logo.png" alt="TensorFlow">
+                        <img src="assets/logos/github.png" alt="GitHub">
+                    </div>
+                </article>
+    
+                <!-- WEB DEVELOPMENT -->
+                <article class="track-card reveal reveal-delay-3">
+                    <div class="track-header">
+                        <div class="track-name">Web Development</div>
+                        <div class="track-tag">Build & Ship</div>
+                    </div>
+    
+                    <ul class="track-projects">
+                        <li>Personal Portfolio Website</li>
+                        <li>Study Planner Web App</li>
+                        <li>Interactive Startup Landing Page</li>
+                    </ul>
+    
+                    <div class="track-meta">
+                        <div class="track-level">Levels: Beginner → Advanced</div>
+                    </div>
+    
+                    <!-- ICONS -->
+                    <div class="track-icons">
+                        <img src="assets/logos/HTML5.webp" alt="HTML">
+                        <img src="assets/logos/css.png" alt="CSS">
+                        <img src="assets/logos/javascript.webp" alt="JavaScript">
+                        <img src="assets/logos/github.png" alt="GitHub">
+                    </div>
+                </article>
+    
+                <!-- PORTFOLIO & CV LAB -->
+                <article class="track-card reveal reveal-delay-3">
+                    <div class="track-header">
+                        <div class="track-name">Portfolio & CV Lab</div>
+                        <div class="track-tag">Story & Positioning</div>
+                    </div>
+    
+                    <ul class="track-projects">
+                        <li>GitHub Profile Revamp</li>
+                        <li>Project Write-up Collection</li>
+                        <li>Impact-Focused CV & LinkedIn</li>
+                    </ul>
+    
+                    <div class="track-meta">
+                        <div class="track-level">Levels: All</div>
+                    </div>
+    
+                    <!-- ICONS -->
+                    <div class="track-icons">
+                        <img src="assets/logos/docs.webp" alt="Docs">
+                        <img src="assets/logos/github.png" alt="GitHub">
+                    </div>
+                </article>
+    
+            </div>
+        </div>
+    </section>
+
+
+        <!-- HOW IT WORKS -->
+        <section class="section" id="how-it-works">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Process</span>
+                    </div>
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">
+                        A clear, guided path from choosing a project track to publishing a portfolio that admissions
+                        officers can instantly understand.
+                    </p>
+                </div>
+
+                <div class="how-steps">
+                    <div class="how-card reveal reveal-delay-1">
+                        <div class="step-index">1</div>
+                        <h3 class="how-title">Choose Your Track</h3>
+                        <p class="how-text">
+                            Tell us your track or Idea that matches your interests, current skills, and target
+                            universities/majors.
+                        </p>
+                    </div>
+                    <div class="how-card reveal reveal-delay-2">
+                        <div class="step-index">2</div>
+                        <h3 class="how-title">Get Curated Projects</h3>
+                        <p class="how-text">
+                            You receive a curated list of project/Personalised project options with timelines, milestones, and expected
+                            outcomes.
+                        </p>
+                    </div>
+                    <div class="how-card reveal reveal-delay-3">
+                        <div class="step-index">3</div>
+                        <h3 class="how-title">Build with Guidance</h3>
+                        <p class="how-text">
+                            Follow structured, mentor-style guidance. Ask questions, debug problems, and improve your
+                            project step by step.
+                        </p>
+                    </div>
+                    <div class="how-card reveal reveal-delay-3">
+                        <div class="step-index">4</div>
+                        <h3 class="how-title">Publish & Showcase</h3>
+                        <p class="how-text">
+                            Ship your project to GitHub, polish write-ups, and translate your work into powerful
+                            portfolio & CV outcomes.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="how-footnote reveal reveal-delay-2">
+                    <strong>Designed for ambitious students</strong> aiming at top universities in Computer Science,
+                    Data Science, AI, and related fields.
+                </p>
+            </div>
+        </section>
+
+        <!-- PROJECT SHOWCASE -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Featured Work</span>
+                    </div>
+                    <h2 class="section-title">Sample Project Showcase</h2>
+                    <p class="section-subtitle">
+                        A glimpse of the kind of projects Brevion Labs students build — scoped to be realistic,
+                        impressive, and fully explainable in an interview.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="showcase-card reveal reveal-delay-1">
+                        <h3 class="showcase-title">Personalized Study-Time Recommender</h3>
+                        <p class="showcase-desc">
+                            Uses historical grades and time logs to suggest optimal study slots for each subject across
+                            a week.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">ML</span>
+                            <span class="tag">Scheduling</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="Personalized Study-Time Recommender">
+                            View Details
+                        </button>
+                    </article>
+
+                    <article class="showcase-card reveal reveal-delay-2">
+                        <h3 class="showcase-title">University Data Explorer</h3>
+                        <p class="showcase-desc">
+                            Interactive dashboard exploring acceptance rates, tuition, and outcomes for universities
+                            across countries.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">Data Science</span>
+                            <span class="tag">Plotly</span>
+                            <span class="tag">Dashboards</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="University Data Explorer">
+                            View Details
+                        </button>
+                    </article>
+
+                    <article class="showcase-card reveal reveal-delay-3">
+                        <h3 class="showcase-title">Interactive Portfolio Website</h3>
+                        <p class="showcase-desc">
+                            A polished, responsive portfolio that showcases projects, skills, and extracurriculars in a
+                            single page.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="Interactive Portfolio Website">
+                            View Details
+                        </button>
+                    </article>
+
+                    <article class="showcase-card reveal reveal-delay-1">
+                        <h3 class="showcase-title">Handwritten Digit Classifier</h3>
+                        <p class="showcase-desc">
+                            A neural-network powered model trained on handwritten digits, with a simple drawing
+                            interface demo.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Computer Vision</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="Handwritten Digit Classifier">
+                            View Details
+                        </button>
+                    </article>
+
+                    <article class="showcase-card reveal reveal-delay-2">
+                        <h3 class="showcase-title">Movie Recommendation Engine</h3>
+                        <p class="showcase-desc">
+                            Recommends similar movies based on user ratings and content similarity, deployed as a simple
+                            web app.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">Recommenders</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Flask</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="Movie Recommendation Engine">
+                            View Details
+                        </button>
+                    </article>
+
+                    <article class="showcase-card reveal reveal-delay-3">
+                        <h3 class="showcase-title">Climate Impact Visualizer</h3>
+                        <p class="showcase-desc">
+                            Visualizes CO₂ emissions and temperature anomalies over time, with country-level
+                            comparisons.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Visualization</span>
+                        </div>
+                        <button class="showcase-btn" type="button" data-project="Climate Impact Visualizer">
+                            View Details
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section" id="testimonials">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Results</span>
+                    </div>
+                    <h2 class="section-title">What Students Are Saying</h2>
+                    <p class="section-subtitle">
+                        Hear from students who turned curiosity into admission-winning portfolios with Brevion Labs.
+                    </p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <article class="testimonial-card reveal reveal-delay-1">
+                        <div class="testimonial-quote">“</div>
+                        <p class="testimonial-text">
+                            Before Brevion Labs I had nothing concrete to show. Now I have 3 fully documented projects
+                            on my GitHub that I can confidently discuss in interviews and essays.
+                        </p>
+                        <div class="testimonial-meta">
+                            <div>
+                                <div class="testimonial-name">Riya</div>
+                                <div class="testimonial-grade">Targeting CS programs in the US</div>
+                            </div>
+                            <div class="testimonial-highlight">3-project portfolio completed</div>
+                        </div>
+                        <a href="https://akshita172.github.io/BridgeAbility/" class="testimonial-link" target="_blank">
+                            View Riya’s Project →
+                        </a>
+                    </article>
+
+                    <article class="testimonial-card reveal reveal-delay-2">
+                        <div class="testimonial-quote">“</div>
+                        <p class="testimonial-text">
+                            The step-by-step structure meant I never felt stuck. Every week I could see progress, and by
+                            the end I had a project I was genuinely proud of including in my SOP.
+                        </p>
+                        <div class="testimonial-meta">
+                            <div>
+                                <div class="testimonial-name">Harshit</div>
+                                <div class="testimonial-grade">Applying for Data Science majors</div>
+                            </div>
+                            <div class="testimonial-highlight">AI & Data Science track</div>
+                        </div>
+                        <a href="https://space-safari-r5pg.vercel.app/" class="testimonial-link" target="_blank">
+                            View Harshit’s Projects →
+                        </a>
+                    </article>
+
+                    <article class="testimonial-card reveal reveal-delay-3">
+                        <div class="testimonial-quote">“</div>
+                        <p class="testimonial-text">
+                            The portfolio & CV lab was a game changer. I knew I’d done good work, but Brevion Labs
+                            helped me present it in a way admissions teams actually understand.
+                        </p>
+                        <div class="testimonial-meta">
+                            <div>
+                                <div class="testimonial-name">Wesley, Grade 12</div>
+                                <div class="testimonial-grade">CS + Economics applications</div>
+                            </div>
+                            <div class="testimonial-highlight">Portfolio & CV lab add-on</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Programs</span>
+                    </div>
+                    <h2 class="section-title">Choose Your Starting Point</h2>
+                    <p class="section-subtitle">
+                        Whether you want to test the waters with one project or build a full admissions-ready portfolio,
+                        there’s a Brevion Labs path for you.
+                    </p>
+                </div>
+
+                <div class="pricing-grid">
+                    <article class="pricing-card reveal reveal-delay-1">
+                        <div class="pricing-pill">Starter</div>
+                        <h3 class="pricing-name">Starter · 1 Project</h3>
+                        <div class="pricing-price">4-5 Weeks</div>
+                        <div class="pricing-note">Perfect for your first serious tech project.</div>
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="pricing-dot"></span>1 curated or personalised project in Web Dev
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Structured plan, milestones & resources
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Light portfolio/GitHub guidance
+                            </li>
+                        </ul>
+                        <button class="btn btn-secondary pricing-btn" type="button"
+                            onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                            Get Started
+                        </button>
+                    </article>
+
+                    <article class="pricing-card popular reveal reveal-delay-2">
+                        <div class="pricing-pill">Growth</div>
+                        <div class="pricing-badge">Most Popular</div>
+                        <h3 class="pricing-name">Advanced Track</h3>
+                        <div class="pricing-price">10-14 Weeks</div>
+                        <div class="pricing-note">Build a coherent, multi-project portfolio.</div>
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="pricing-dot"></span>Curated or personalised project across chosen tracks
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Deeper mentor-style guidance & feedback
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Structured GitHub, portfolio & CV support
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Support on positioning projects for applications
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary pricing-btn" type="button"
+                            onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                            Apply for Growth Track
+                        </button>
+                    </article>
+
+                    <article class="pricing-card reveal reveal-delay-3">
+                        <div class="pricing-pill">Elite</div>
+                        <h3 class="pricing-name">Pro track · Full Portfolio</h3>
+                        <div class="pricing-price">20-28 Weeks</div>
+                        <div class="pricing-note">For students targeting the world’s most competitive programs.</div>
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="pricing-dot"></span>Full multi-project portfolio across tracks
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Intensive guidance & review loops
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Deep-dive on essays & narratives (project side)
+                            </li>
+                            <li>
+                                <span class="pricing-dot"></span>Strategic positioning of work for top universities
+                            </li>
+                        </ul>
+                        <button class="btn btn-secondary pricing-btn" type="button"
+                            onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                            Talk to Us
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACKED & MENTORED BY -->
+        <section class="section" id="backed-by">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Mentorship</span>
+                    </div>
+                    <h2 class="section-title">Project backed and mentored by</h2>
+                    <p class="section-subtitle">
+                        Students gain guidance inspired by experts from top global institutions &amp; companies.
+                    </p>
+                </div>
+        
+                <div class="logo-slider">
+                    <div class="logo-track">
+                        <img src="assets/logos/bain.webp" alt="Bain &amp; Company" />
+                        <img src="assets/logos/deloitte.png" alt="Deloitte" />
+                        <img src="assets/logos/BCG logo.png" alt="BCG" />
+                        <img src="assets/logos/Amazon.jpg" alt="Amazon" />
+                        <img src="assets/logos/caltech.png" alt="Caltech" />
+                        <img src="assets/logos/Indian_Institute_of_Technology_Roorkee.png" alt="IIT Roorkee" />
+                        <img src="assets/logos/IIT_Madras.png" alt="IIT Madras" />
+                        <img src="assets/logos/UIUC.png" alt="UIUC" />
+        
+                        <!-- duplicate for smooth infinite scroll -->
+                        <img src="assets/logos/bain.webp" alt="Bain &amp; Company" />
+                        <img src="assets/logos/deloitte.png" alt="Deloitte" />
+                        <img src="assets/logos/BCG logo.png" alt="BCG" />
+                        <img src="assets/logos/Amazon.jpg" alt="Amazon" />
+                        <img src="assets/logos/caltech.png" alt="Caltech" />
+                        <img src="assets/logos/Indian_Institute_of_Technology_Roorkee.png" alt="IIT Roorkee" />
+                        <img src="assets/logos/IIT_Madras.png" alt="IIT Madras" />
+                        <img src="assets/logos/UIUC.png" alt="UIUC" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-label">
+                        <span class="section-label-dot"></span>
+                        <span>Contact</span>
+                    </div>
+                    <h2 class="section-title">Tell Us About Your Goals</h2>
+                    <p class="section-subtitle">
+                        Share where you are right now and what you’re aiming for. We’ll help you choose the right
+                        project track and structure.
+                    </p>
+                </div>
+
+                <div class="contact-wrapper">
+                    <div class="contact-text reveal reveal-delay-1">
+                        <p class="contact-intro">
+                            Brevion Labs is for students who want their work to speak louder than generic
+                            extracurriculars. If you’re aiming for competitive CS, Data, or AI programs, a sharp project
+                            portfolio can be a decisive edge.
+                        </p>
+                        <p class="contact-highlight">
+                            Use the form to tell us about your interests, target universities, and timelines. We’ll
+                            suggest a starting track and project options.
+                        </p>
+                        <ul class="contact-list">
+                            <li>Not sure which track to pick? Tell us what excites you.</li>
+                            <li>Already coding? Share links to any existing work.</li>
+                            <li>Parents welcome ask us about timelines & expectations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-card reveal reveal-delay-2">
+                        <form id="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name <span class="required">*</span></label>
+                                    <input type="text" id="name" name="name" placeholder="Your full name" required />
+                                    <div class="error-msg" id="name-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" placeholder="you@example.com"
+                                        required />
+                                    <div class="error-msg" id="email-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="grade">Preferred WhatsApp Number <span class="required">*</span></label>
+                                    <input type="text" id="grade" name="grade" placeholder="+1 234 567 8901" required />
+                                    <div class="error-msg" id="grade-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="track">Interested Track</label>
+                                    <select id="track" name="track">
+                                        <option value="">Select a track (optional)</option>
+                                        <option value="ai-ml">AI &amp; Machine Learning</option>
+                                        <option value="data-science">Data Science</option>
+                                        <option value="web-dev">Web Development</option>
+                                        <option value="portfolio">Portfolio &amp; CV Lab</option>
+                                        <option value="not-sure">Not sure yet</option>
+                                    </select>
+                                    <div class="error-msg" id="track-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Tell us about your goals <span class="required">*</span></label>
+                                <textarea id="message" name="message" rows="4"
+                                    placeholder="Share your interests, target universities, or what kind of projects you'd like to build."
+                                    required></textarea>
+                                <div class="error-msg" id="message-error"></div>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">
+                                Submit &nbsp;→
+                            </button>
+                            <p class="form-note">
+                                We’ll get back with suggested tracks, sample projects, and next steps. No spam, ever.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    <span>FAQ</span>
+                </div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">
+                    Answers to some of the most common questions students and parents ask.
+                </p>
+            </div>
+    
+            <div class="faq-list">
+    
+                <div class="faq-item">
+                    <button class="faq-question">What is Brevion Labs? <span>+</span></button>
+                    <div class="faq-answer">
+                        Brevion Labs is a project-first studio where students build real AI, ML, Data Science,
+                        and Web Dev projects with structured mentorship and GitHub-ready outcomes.
+                    </div>
+                </div>
+    
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Will there be classes or lectures? <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        No — there are no classes. You will get a complete roadmap, weekly structure, and deep research
+                        support based on the exact project you are building. It’s project-first, not class-first.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can you build my personalised project for me? <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. You share your idea, and after evaluating feasibility, timeline, and resources, our team
+                        helps build the entire personalised project for you with full documentation.
+                    </div>
+                </div>
+    
+                <div class="faq-item">
+                    <button class="faq-question">How long does each project take? <span>+</span></button>
+                    <div class="faq-answer">
+                        Depending on the track, projects take 4–28 weeks. Multi-project tracks take longer,
+                        while single-project programs finish quicker.
+                    </div>
+                </div>
+
+
+    
+                <div class="faq-item">
+                    <button class="faq-question">Where do projects get uploaded? <span>+</span></button>
+                    <div class="faq-answer">
+                        Every project is shipped to your GitHub, with documentation and a clear write-up to help in
+                        admissions.
+                    </div>
+                </div>
+    
+                <div class="faq-item">
+                    <button class="faq-question">Will this help with university admissions? <span>+</span></button>
+                    <div class="faq-answer">
+                        Yes — projects are designed to be admissions-impactful and help you stand out with real proof of
+                        work.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer mock interview sessions? <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes — but only for the Elite Track. Students receive 2 full mock panel interviews designed for
+                        top-tier university admissions.
+                    </div>
+                </div>
+
+                
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <div class="nav-logo-circle">BL</div>
+                <div>
+                    <div>Brevion Labs</div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted);">Ambition. Skills. Impact.</div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="#why">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#home">Home</a>
+            </div>
+
+            <div class="footer-social">
+                <span style="font-size:0.8rem; color:var(--text-muted);">Connect</span>
+                <div class="social-icon" title="LinkedIn">
+                    in
+                </div>
+                <div class="social-icon" title="Instagram">
+                    ⧉
+                </div>
+                <div class="social-icon" title="YouTube">
+                    ▶
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top Button -->
+    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+        <span></span>
+    </button>
+
+    <!-- Modal for Project Details -->
+    <div class="modal-backdrop" id="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Project Details</h3>
+                <button class="modal-close" type="button" id="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-body-text">
+                    This is a sample Brevion Labs project. In a real program, this section would outline:
+                </p>
+                <ul style="margin:8px 0 0 18px; font-size:0.86rem;">
+                    <li>What skills the project demonstrates</li>
+                    <li>How it’s structured over weeks</li>
+                    <li>How it appears on GitHub and your CV</li>
+                    <li>How to explain it in essays & interviews</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+            </div>
+        </div>
+    </section>
+
+
+    <!-- JavaScript -->
+    <script>
+        // NAV: mobile toggle and smooth scrolling
+        (function () {
+            const navToggle = document.getElementById("nav-toggle");
+            const navLinks = document.getElementById("nav-links");
+            const navbar = document.getElementById("navbar");
+
+            // Toggle mobile nav
+            navToggle.addEventListener("click", function () {
+                navToggle.classList.toggle("active");
+                navLinks.classList.toggle("open");
+            });
+
+            // Smooth scroll for nav & any anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                link.addEventListener("click", function (e) {
+                    const targetId = this.getAttribute("href");
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: "smooth" });
+                        // Close nav on mobile
+                        navToggle.classList.remove("active");
+                        navLinks.classList.remove("open");
+                    }
+                });
+            });
+
+            // NAV on scroll + scroll-top visibility
+            const scrollTopBtn = document.getElementById("scroll-top");
+            window.addEventListener("scroll", function () {
+                const offset = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (offset > 40) {
+                    navbar.classList.add("nav-scrolled");
+                } else {
+                    navbar.classList.remove("nav-scrolled");
+                }
+
+                if (offset > 260) {
+                    scrollTopBtn.classList.add("visible");
+                } else {
+                    scrollTopBtn.classList.remove("visible");
+                }
+            });
+
+            // Scroll to top
+            scrollTopBtn.addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        })();
+
+        // IntersectionObserver for reveal animations
+        (function () {
+            const revealElements = document.querySelectorAll(".reveal");
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("active");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.15,
+                    }
+                );
+
+                revealElements.forEach((el) => observer.observe(el));
+            } else {
+                // Fallback: if IntersectionObserver not supported, show all
+                revealElements.forEach((el) => el.classList.add("active"));
+            }
+        })();
+
+        // Modal for project details
+        (function () {
+            const modalBackdrop = document.getElementById("modal-backdrop");
+            const modalTitle = document.getElementById("modal-title");
+            const modalBodyText = document.getElementById("modal-body-text");
+            const modalClose = document.getElementById("modal-close");
+
+            function openModal(projectName) {
+                modalTitle.textContent = projectName;
+                modalBodyText.textContent =
+                    "This is a sample Brevion Labs project: " +
+                    projectName +
+                    ". In a real program, this section would outline how the project is structured, which skills it demonstrates, and how it is positioned in your portfolio.";
+                modalBackdrop.classList.add("active");
+            }
+
+            function closeModal() {
+                modalBackdrop.classList.remove("active");
+            }
+
+            document.querySelectorAll(".showcase-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const projectName = this.getAttribute("data-project") || "Project Details";
+                    openModal(projectName);
+                });
+            });
+
+            modalClose.addEventListener("click", closeModal);
+            modalBackdrop.addEventListener("click", function (e) {
+                if (e.target === modalBackdrop) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && modalBackdrop.classList.contains("active")) {
+                    closeModal();
+                }
+            });
+        })();
+
+        // Basic form validation
+        (function () {
+            const form = document.getElementById("contact-form");
+            if (!form) return;
+
+            const fields = {
+                name: document.getElementById("name"),
+                email: document.getElementById("email"),
+                grade: document.getElementById("grade"),
+                message: document.getElementById("message"),
+            };
+
+            const errors = {
+                name: document.getElementById("name-error"),
+                email: document.getElementById("email-error"),
+                grade: document.getElementById("grade-error"),
+                message: document.getElementById("message-error"),
+            };
+
+            function validateEmail(email) {
+                // Simple email pattern for basic validation
+                const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return pattern.test(email);
+            }
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                let valid = true;
+
+                // Clear previous errors
+                Object.keys(errors).forEach((key) => {
+                    errors[key].textContent = "";
+                });
+
+                 if (valid) {
+                    const scriptURL = "https://script.google.com/macros/s/AKfycbzlPYanm10YN0QJ7kgYZMfzWfs6wV4b1d89F-nEsO-THWeI4BJaRp1D5u5OwxCrZUup/exec";
+
+                    const submitButton = form.querySelector("button[type='submit']");
+                    const originalText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = "Sending...";
+
+                    fetch(scriptURL, {
+                        method: "POST",
+                        body: new FormData(form),
+                    })
+                        .then((response) => response.text())
+                        .then((text) => {
+                            alert("Thank you! Your details have been recorded. We’ll contact you soon.");
+                            form.reset();
+                        })
+                        .catch((error) => {
+                            console.error("Error!", error);
+                            alert("Something went wrong while submitting. Please try again.");
+                        })
+                        .finally(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalText;
+                        });
+                }
+
+                // Name
+                if (!fields.name.value.trim()) {
+                    errors.name.textContent = "Please enter your name.";
+                    valid = false;
+                }
+
+                // Email
+                if (!fields.email.value.trim()) {
+                    errors.email.textContent = "Please enter your email.";
+                    valid = false;
+                } else if (!validateEmail(fields.email.value.trim())) {
+                    errors.email.textContent = "Please enter a valid email address.";
+                    valid = false;
+                }
+
+                // Grade
+                if (!fields.grade.value.trim()) {
+                    errors.grade.textContent = "Please tell us your grade/class.";
+                    valid = false;
+                }
+
+                // Message
+                if (!fields.message.value.trim()) {
+                    errors.message.textContent = "Please share a bit about your goals.";
+                    valid = false;
+                }
+
+                if (valid) {
+                    alert(
+                        "Thank you for reaching out to Brevion Labs! Your details have been received. We’ll contact you shortly with recommended tracks and next steps."
+                    );
+                    form.reset();
+                }
+
+            });
+
+        // FAQ Toggle (CORRECT LOCATION)
+            document.querySelectorAll(".faq-question").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const item = btn.parentElement;
+                    const answer = item.querySelector(".faq-answer");
+
+                    // Close all other FAQs
+                    document.querySelectorAll(".faq-item").forEach((faq) => {
+                        if (faq !== item) {
+                            faq.classList.remove("open");
+                            faq.querySelector(".faq-answer").style.maxHeight = null;
+                            faq.querySelector(".faq-question span").textContent = "+";
+                        }
+                    });
+
+                    // Toggle this FAQ
+                    if (item.classList.contains("open")) {
+                        item.classList.remove("open");
+                        answer.style.maxHeight = null;
+                        btn.querySelector("span").textContent = "+";
+                    } else {
+                        item.classList.add("open");
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        btn.querySelector("span").textContent = "−";
+                    }
+                });
+            });
+
+
+        })();
+    </script>
+</body>
+
+</html>
